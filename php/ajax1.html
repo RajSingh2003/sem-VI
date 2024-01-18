@@ -1,0 +1,23 @@
+<html>
+<body>
+
+<script>
+function display(){
+var x = new XMLHttpRequest();
+var name = document.getElementById('user').value;
+x.open("GET","app.php?name="+name,true);
+x.send();
+x.onreadystatechange = function()
+{
+if(x.readyState == 4 && x.status == 200){
+document.getElementById('show').innerHTML = x.responseText;
+
+}
+}
+}</script>
+<input type=text" id = "user" name= "name"><br>
+<button onclick = "display()"> submit</button>
+<p id = "show"></p>
+
+</body>
+</html>

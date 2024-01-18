@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+ <html>
+   <head>
+     <script src="http://192.168.1.254/jquery/jquery.js"></script>
+     <script>
+       $(document).ready(function(){
+           $("#btn1").click(function(){
+            $("p").append("<b>Append Text</b>.");
+              });
+        $("#btn2").click(function(){
+            $("ol").append("<li>After Text</li>");
+          });
+       });
+   </script>
+  </head>
+ <body>
+   <p>This is a paragraph for trial.</p>
+<ol>
+<li>List Item1 </li>
+<li>List Item2 </li>
+<li>List Item3 </li>
+<li>List Item4 </li>
+</ol>
+    <button id="btn1">append text</button>
+     <button id="btn2">append list item</button>     
+  </body>
+</html>
+

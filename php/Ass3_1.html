@@ -1,0 +1,30 @@
+<html>
+<body>
+<input type = button value = alert onclick = "Alert()">
+<input type = button value = prompt onclick = "Prompt()">
+<input type = button value = confirm  onclick = "Confirm()">
+
+<script>
+function Alert() {
+alert("Exam are near, have you start preparing ?");
+
+}
+
+function Prompt() {
+var ans = prompt("Have you started prepartion ?", "yes");
+if(ans === "yes")
+alert("Good Student");
+else
+alert("Bad Student");
+}
+
+function Confirm(){
+var chk = confirm("Are you ready for exam? ");
+if(chk == true)
+alert("All the best");
+else
+alert("Then start studing");
+}
+</script>
+</body>
+</html>
