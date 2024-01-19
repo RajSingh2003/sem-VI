@@ -1,0 +1,71 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Scanner;
+
+public class PhoneBookProgram {
+    public static void main(String[] args) {
+        // Create a Hashtable to store names and phone numbers
+        Hashtable<String, String> phoneBook = new Hashtable<>();
+
+        // Load data from the text file into the Hashtable
+        loadPhoneBookData(phoneBook, "phonebook.txt");
+
+        // Scanner to accept user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Input a name or phone number
+        System.out.print("Enter a name or phone number: ");
+        String input = scanner.nextLine();
+
+        // Search for the corresponding value in the Hashtable
+        String result = searchPhoneBook(phoneBook, input);
+
+        // Display the result
+        System.out.println("Result: " + result);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    private static void loadPhoneBookData(Map<String, String> phoneBook, String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Split the line into fields using tabs
+                String[] fields = line.split("\t");
+
+                // Check if the line has at least two fields (name and phone number)
+                if (fields.length >= 2) {
+                    String name = fields[0];
+                    String phoneNumber = fields[1];
+
+                    // Add to the Hashtable
+                    phoneBook.put(name, phoneNumber);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String searchPhoneBook(Map<String, String> phoneBook, String input) {
+        // Check if the input is a name or a phone number
+        if (phoneBook.containsKey(input)) {
+            // Input is a name, return the corresponding phone number
+            return phoneBook.get(input);
+        } else if (phoneBook.containsValue(input)) {
+            // Input is a phone number, search for the corresponding name
+            for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
+                if (entry.getValue().equals(input)) {
+                    return entry.getKey();
+                }
+            }
+        }
+
+        // If no match is found
+        return "Not found";
+    }
+}
